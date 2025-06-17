@@ -38,7 +38,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        if ($user->isAdmin($user)) {
+        if ($user->role === 'admin' || $user->id === $model->id) {
             return true; // Admins can view any user
         } else {
             return false; // Non-admins cannot view any users
@@ -50,7 +50,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->isAdmin($user)) {
+        if ($user->role === 'admin') {
             return true; // Admins can view any user
         } else {
             return false; // Non-admins cannot view any users

@@ -12,9 +12,12 @@
         <div class="content-header">
             <h2 class="title-logo"><a href="{{ route('dashboard') }}">LaraHelps</a></h2>
             <ul class="list-nav-link">
-                <li>
-                    <a href="{{ route('user.index') }}" class="nav-link">Utilizadores</a>
-                </li>
+
+                @can('viewAny', App\Models\User::class)
+                    <li>
+                        <a href="{{ route('user.index') }}" class="nav-link">Utilizadores</a>
+                    </li>
+                @endcan
                 <li>
                     <a href="{{ route('user.show', ['user' => Auth::user()->id]) }}" class="nav-link">
                         {{ Auth::user()->name }}
