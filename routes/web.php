@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('dashboard');
 
+Route::get('/todo', [TaskController::class, 'index'])->name('tasks.index');
+Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+Route::patch('/tasks/{task}/toggle', [TaskController::class, 'toggle'])->name('tasks.toggle');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function () {
 
@@ -34,3 +40,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/generate-pdf-user/{user}', [UserController::class, 'generatePdf'])->name('user.generate-pdf')->middleware('can:View,user');
     Route::get('/generate-pdf-user', [UserController::class, 'generatePdfUsers'])->name('user.generate-pdf-users')->middleware('can:ViewAny,App\Models\User');
 });
+
+

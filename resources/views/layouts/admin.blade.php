@@ -24,6 +24,9 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('tasks.index') }}" class="nav-link">To do</a>
+                </li>
+                <li>
                     <a href="{{ route('logout') }}" class="nav-link">Sair</a>
                 </li>
             </ul>
