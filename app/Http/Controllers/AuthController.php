@@ -31,7 +31,7 @@ class AuthController extends Controller
             }
 
             // Redirecionar o utilizador
-            return redirect()->route('user.index');
+            return redirect()->route('dashboard')->with('success', 'Login com sucesso!');
         } catch (Exception $e) {
             // Redirecionar o utilizador, enviar a mensagem de erro
             return back()->withInput()->with('error', 'E-mail ou senha inválido!');

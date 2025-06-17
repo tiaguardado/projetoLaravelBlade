@@ -40,6 +40,10 @@
                     <span>{{ $user->email }}</span>
                 </div>
                 <div class="mb-1">
+                    <span class="font-bold">Role </span>
+                    <span>{{ $user->role }}</span>
+                </div>
+                <div class="mb-1">
                     <span class="font-bold">Criado em: </span>
                     <span>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}</span>
                 </div>

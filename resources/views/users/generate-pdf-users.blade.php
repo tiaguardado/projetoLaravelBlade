@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tiago Guardado</title>
+    <title>LaraHelps</title>
 </head>
 
 <body style="font-size: 12px;">
@@ -18,6 +18,7 @@
         <th style="border: 1px solid #ccc">ID</th>
         <th style="border: 1px solid #ccc">Nome</th>
         <th style="border: 1px solid #ccc">E-mail</th>
+        <th style="border: 1px solid #ccc">Role</th>
         <th style="border: 1px solid #ccc">Cadastro em</th>
     </tr>
     </thead>
@@ -28,6 +29,7 @@
             <td style="border: 1px solid #ccc; border-top: none;">{{ $user->id }}</td>
             <td style="border: 1px solid #ccc; border-top: none;">{{ $user->name }}</td>
             <td style="border: 1px solid #ccc; border-top: none;">{{ $user->email }}</td>
+            <td style="border: 1px solid #ccc; border-top: none;">{{ $user->role }}</td>
             <td style="border: 1px solid #ccc; border-top: none;">{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}</td>
         </tr>
     @empty

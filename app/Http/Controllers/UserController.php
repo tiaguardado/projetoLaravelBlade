@@ -97,6 +97,7 @@ class UserController extends Controller
             // Atualiza o utilizador
             $user->update([
                 'name' => $request->name,
+                'role' => $request->role,
                 'email' => $request->email,
             ]);
 

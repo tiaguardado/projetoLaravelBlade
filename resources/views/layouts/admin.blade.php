@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <title>Tiago Guardado</title>
+    <title>LaraHelps</title>
 </head>
 <body>
 <div class="main-container">
     <header class="header">
         <div class="content-header">
-            <h2 class="title-logo"><a href="{{ route('dashboard') }}">Tiago Guardado</a></h2>
+            <h2 class="title-logo"><a href="{{ route('dashboard') }}">LaraHelps</a></h2>
             <ul class="list-nav-link">
                 <li>
                     <a href="{{ route('user.index') }}" class="nav-link">Utilizadores</a>
+                </li>
+                <li>
+                    <a href="{{ route('user.show', ['user' => Auth::user()->id]) }}" class="nav-link">
+                        {{ Auth::user()->name }}
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('logout') }}" class="nav-link">Sair</a>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="content">
         <div class="content-title">
-            <h1 class="page-title">Editar Usuário</h1>
+            <h1 class="page-title">Editar Utilizador</h1>
             <span>
                 <a href="{{ route('user.index') }}" class="btn-info">Listar</a>
                 <a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn-primary">Visualizar</a>
@@ -27,6 +27,23 @@
                 <input type="email" name="email" id="email" class="form-input"
                        placeholder="Melhor e-mail do usuário" value="{{ old('email', $user->email) }}">
             </div>
+
+
+            @php
+                $roles = ['super-admin', 'admin', 'user'];
+            @endphp
+
+            <div class="mb-4">
+                <label for="role" class="form-label">Função:</label>
+                <select name="role" id="role" class="form-input">
+                    @foreach ($roles as $role)
+                        <option value="{{ $role }}" {{ old('role', $user->role) == $role ? 'selected' : '' }}>
+                            {{ ucfirst($role) }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <button type="submit" class="btn-warning">Salvar</button>
         </form>
     </div>

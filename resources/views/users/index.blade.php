@@ -51,6 +51,7 @@
                 <tr class="table-header">
                     <th class="table-header">ID</th>
                     <th class="table-header">Nome</th>
+                    <th class="table-header">Role</th>
                     <th class="table-header">E-mail</th>
                     <th class="table-header center">Ações</th>
                 </tr>
@@ -60,18 +61,24 @@
                     <tr class="table-row">
                         <td class="table-cell">{{ $user->id }}</td>
                         <td class="table-cell">{{ $user->name }}</td>
+                        <td class="table-cell">{{ $user->role }}</td>
                         <td class="table-cell">{{ $user->email }}</td>
                         <td class="table-actions">
                             <a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn-primary">Visualizar</a>
-                            <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn-warning">Editar</a>
 
-                            <form id="delete-form-{{ $user->id }}"
-                                  action="{{ route('user.destroy', ['user' => $user->id]) }}"
-                                  method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="button" class="btn-danger" onclick="confirmdDelete({{ $user->id }})">Apagar</button>
-                            </form>
+                            @can('update',$user)
+                                <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn-warning">Editar</a>
+                            @endcan
+
+                            @can('delete',$user)
+                                <form id="delete-form-{{ $user->id }}"
+                                      action="{{ route('user.destroy', ['user' => $user->id]) }}"
+                                      method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn-danger" onclick="confirmdDelete({{ $user->id }})">Apagar</button>
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @empty
